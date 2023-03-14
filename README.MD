@@ -14,8 +14,7 @@
 - *Gestion de l’alarme : Quand l’alarme est activée, il bascule sur un écran vérouillé, et sur un pavé numérique au touché qui permet de désarmer l’alarme avec un code.*
 - *La ligne du bas, c’est 4 icônes de notification du ramassage des poubelles, qui prennent la couleur de la poubelle le jour du ramassage.*
 - *Ecran éteint lorsque la maison est en mode absent*
-- *Luminosité réduite en fonction de l'heure de la journée/nuit*
-- *Ecran allumé lors du passage en mode présent / Ouverture porte d’entrée*
+- *service pour controler la luminosité depuis HA*
 
 L’idée de cet écran est de le placer juste a coté de la porte d’entrée (intérieur).
 
@@ -48,8 +47,8 @@ L’idée de cet écran est de le placer juste a coté de la porte d’entrée (
  ![image](https://user-images.githubusercontent.com/35771339/225095754-c85a02aa-c55a-4bff-8a01-97f23bece094.png)![image](https://user-images.githubusercontent.com/35771339/225095383-daa44c48-be16-4f7a-8566-af4a89afb829.png)![image](https://user-images.githubusercontent.com/35771339/225095476-81ce4af2-d161-485c-97b5-003d50e8fdfd.png)
 
 
-  Pour programmer l'interface du Nextrion, il faut récuperer l'[Editeur Nextion](https://nextion.tech/nextion-editor/)
-  Vous pouvez charger mon fichier nextion.tft, et adaptez en fonction de vos besoins. N'hésitez pas à consulter la [documentation](https://nextion.tech/editor_guide/)
+  Pour programmer l'interface du Nextion, il faut récuperer [l'éditeur Nextion](https://nextion.tech/nextion-editor/)
+  Vous pouvez charger mon fichier nextion.tft, et adaptez en fonction de vos besoins. N'hésitez pas à consulter [la documentation](https://nextion.tech/editor_guide/)
   
   Pour charger le fichier sur votre Nextion, cliquer sur File/TFT File Output, copier/coller le fichier .tft sur une carte micro SD à la racine, et alimentez votre       ecran. Une fois l'Update Successfull, éteignez l'ecran, sortez la micro SD et rebranchez -le, et voilà! votre écran est configuré!
   
