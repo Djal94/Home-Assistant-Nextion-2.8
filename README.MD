@@ -45,4 +45,6 @@
   
   Encore une fois, récupérez mon fichier nextion.yaml et adaptez selon vos besoins.
   
+  #### Annexes : 
   
+  - Excellent sujet sur le forum HA de Argonaute duquel je me suis inspiré : https://forum.hacf.fr/t/ecran-tactile-nextion-avec-esphome-deporter-vos-commandes/10622
