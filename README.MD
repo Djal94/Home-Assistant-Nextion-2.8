@@ -5,31 +5,33 @@
 
 ### Fonctions : 
 
-- Indicateurs (points de couleur) de connectivité WIfi/Home Assistant
-- Date/Heure/Météo
-- Indicateurs de présence des personnes avec bascule de chaque visage en couleur/N&B
-- Notification de courrier avec icône enveloppe qui clignote et indicateur du nombre de passages.
-- Bouton d’ouverture du portail extérieur.
-- Gestion de l’alarme : Quand l’alarme est activée, il bascule sur un écran vérouillé, et sur un pavé numérique au touché qui permet de désarmer l’alarme avec un code.
-- La ligne du bas, c’est 4 icônes de notification du ramassage des poubelles, qui prennent la couleur de la poubelle le jour du ramassage.
-- Ecran éteint lorsque la maison est en mode absent
-- Luminosité réduite en fonction de l'heure de la journée/nuit
-- Ecran allumé lors du passage en mode présent / Ouverture porte d’entrée
+- *Indicateurs (points de couleur) de connectivité WIfi/Home Assistant*
+- *Date/Heure/Météo*
+- *Indicateurs de présence des personnes avec bascule de chaque visage en couleur/N&B*
+- *Notification de courrier avec icône enveloppe qui clignote et indicateur du nombre de passages.*
+- *Bouton d’ouverture du portail extérieur.*
+- *Gestion de l’alarme : Quand l’alarme est activée, il bascule sur un écran vérouillé, et sur un pavé numérique au touché qui permet de désarmer l’alarme avec un code.*
+- *La ligne du bas, c’est 4 icônes de notification du ramassage des poubelles, qui prennent la couleur de la poubelle le jour du ramassage.*
+- *Ecran éteint lorsque la maison est en mode absent*
+- *Luminosité réduite en fonction de l'heure de la journée/nuit*
+- *Ecran allumé lors du passage en mode présent / Ouverture porte d’entrée*
 
 L’idée de cet écran est de le placer juste a coté de la porte d’entrée (intérieur).
+
+#### *Les fonctionalités sur cet ecran ne sont pas nouvelles pour moi, et existent déjà sur mon HA. Il s'agit uniquement de les deporter* - je n'explique pas ici comment mettre en place celles-ci.
 
 
 ### Matériel nécéssaire : 
 
 - Un écran Nextion 2.8P, mais vous pouvez prendre le modèle que vous voulez
-    https://fr.aliexpress.com/item/4000593543479.html
+    [Ecran Nextion 2.8P](https://fr.aliexpress.com/item/4000593543479.html)
     
 - Un controleur de type ESP8266, j'ai pris un Wemos D1 mini. Pensez a en prendre un avec un port USB et des broches, sinon ca va etre plus pénible à alimenter/connecter
-    https://fr.aliexpress.com/item/32631693796.html
+    [Wemos D1 Mini](https://fr.aliexpress.com/item/32631693796.html)
     
-- L'éditeur Nextion pour programmer votre écran : https://nextion.tech/nextion-editor/
+- [L'éditeur Nextion](https://nextion.tech/nextion-editor/) pour programmer votre écran
 
-- Le module complémentaire ESPHOME pour Home Asisstant, pour programmer votre ESP facilement depuis HA : https://esphome.io/guides/getting_started_hassio.html
+- Le module complémentaire [ESPHOME](https://esphome.io/guides/getting_started_hassio.html) pour Home Asisstant, pour programmer votre ESP facilement depuis HA
 
 
 ### Connexion ESP/Ecran :
@@ -42,8 +44,8 @@ L’idée de cet écran est de le placer juste a coté de la porte d’entrée (
  
  ### Interface du Nextion : 
 
-  Pour programmer l'interface du Nextrion, il faut récuperer l'Editeur Nextion ici : https://nextion.tech/nextion-editor/
-  Vous pouvez charger mon fichier nextion.tft, et adaptez en fonction de vos besoins. N'hésitez pas à consulter la documentation : https://nextion.tech/editor_guide/
+  Pour programmer l'interface du Nextrion, il faut récuperer l'[Editeur Nextion](https://nextion.tech/nextion-editor/)
+  Vous pouvez charger mon fichier nextion.tft, et adaptez en fonction de vos besoins. N'hésitez pas à consulter la [documentation](https://nextion.tech/editor_guide/)
   
   Pour charger le fichier sur votre Nextion, cliquer sur File/TFT File Output, copier/coller le fichier .tft sur une carte micro SD à la racine, et alimentez votre       ecran. Une fois l'Update Successfull, éteignez l'ecran, sortez la micro SD et rebranchez -le, et voilà! votre écran est configuré!
   
@@ -53,13 +55,13 @@ L’idée de cet écran est de le placer juste a coté de la porte d’entrée (
   
   ### Configuration ESPHOME
   
-  Commencez par installer le module complémentaire ESPHOME dans HA : https://esphome.io/guides/getting_started_hassio.html
-  Voici un petit guide des premiers pas sur ESPHOME: https://hacf.fr/esphome_installation
+  Commencez par installer le module complémentaire [ESPHOME](https://esphome.io/guides/getting_started_hassio.html) dans HA
+  Voici un [petit guide des premiers pas sur ESPHOME](https://hacf.fr/esphome_installation)
   
-  Je vous laisse avec la documentation de ESPHOME, et celle plus spécifique du composant Nextion : https://esphome.io/ et https://esphome.io/components/display/nextion.html
+  Je vous laisse avec la [documentation de ESPHOME](https://esphome.io/), et celle plus spécifique du [Composant Nextion](https://esphome.io/components/display/nextion.html)
   
   Encore une fois, récupérez mon fichier nextion.yaml et adaptez selon vos besoins.
   
   #### Annexes : 
   
-  - Excellent sujet sur le forum HA de Argonaute duquel je me suis inspiré : https://forum.hacf.fr/t/ecran-tactile-nextion-avec-esphome-deporter-vos-commandes/10622
+  - Excellent [sujet sur le forum HA de Argonaute](https://forum.hacf.fr/t/ecran-tactile-nextion-avec-esphome-deporter-vos-commandes/10622) duquel je me suis inspiré
