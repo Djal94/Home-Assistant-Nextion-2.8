@@ -1,0 +1,278 @@
+esphome:
+  name: esp-nextion # nom du composant ESP
+              
+  on_loop: # repete les action a chaque loop (environ toutes les 16ms)
+
+    - if: # test si l'esp est connectéau wifi et edite avec OK la variable sur le nextion
+        condition:
+          wifi.connected:
+        then:
+          - lambda: |-
+                id(esp_nextion).set_component_text_printf("tvariable.twificonnect", "OK");               
+
+              
+
+    - if: # test si l'esp est connectéau à HA et edite les variables sur le nextion
+        condition:
+          api.connected:
+        then:
+          - lambda: |-
+                id(esp_nextion).set_component_text_printf("tvariable.thaconnect", "OK");
+                id(esp_nextion).set_component_text_printf("main.tcourrier","%.0f",id(ha_mail).state);
+                id(esp_nextion).set_component_text_printf("main.tempext","%.1f",id(ha_tempext).state);
+                id(esp_nextion).set_component_text("main.tdate", id(ha_date).state.c_str() );
+                id(esp_nextion).set_component_text("main.ttime", id(ha_time).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.tpvege", id(ha_calpvege).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.tpmarron", id(ha_calpmarron).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.tpjaune", id(ha_calpjaune).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.tpbleu", id(ha_calpbleu).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.tdoudou", id(ha_doudou).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.tdjal", id(ha_djal).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.tmeteo", id(ha_meteo).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.talarm", id(ha_alarm).state.c_str() );
+                id(esp_nextion).set_component_text("tvariable.tpenc", id(ha_calpenc).state.c_str() ); 
+
+
+
+
+
+                   
+
+esp8266:
+  board: d1 # type d'esp
+
+ota:
+
+wifi: # utilisation du réseau et de la clé dans le secret
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+logger:
+  baud_rate: 0
+
+http_request:
+
+uart: # définition des pin de connexion de l'ESP
+  rx_pin: GPIO3
+  tx_pin: GPIO01
+  baud_rate: 9600
+
+
+api: #définition des services
+  services:
+    - service: update_tft # service de mise a jour OTA
+      then:
+        - lambda: id(esp_nextion)->upload_tft();
+
+    - service: ajuster_luminosite # service d'ajustement de la luminosité
+      variables:
+        brightness: float
+      then:
+        - lambda: id(esp_nextion).set_backlight_brightness(brightness);
+
+
+display: #configuration de l'écran
+  - platform: nextion
+    id: esp_nextion
+    update_interval: 5s   # refresh toutes les 5s
+    wake_up_page: 0 #reveil sur la page 5
+    tft_url: http://192.168.0.9/local/nextion/nextion.tft # url de download du .tft pour l'OTA
+    brightness: 50% # définition de la luminosité par défaut
+
+
+    on_wake: # toutes les variables sont mise à jour au réveil de l'ecran
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text_printf("tvariable.tcourrier","%.0f",id(ha_mail).state);
+          id(esp_nextion).set_component_text_printf("main.tempext","%.1f",id(ha_tempext).state);
+          id(esp_nextion).set_component_text("main.tdate", id(ha_date).state.c_str() );
+          id(esp_nextion).set_component_text("main.ttime", id(ha_time).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.tpvege", id(ha_calpvege).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.tpmarron", id(ha_calpmarron).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.tpjaune", id(ha_calpjaune).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.tpbleu", id(ha_calpbleu).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.tdoudou", id(ha_doudou).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.tdjal", id(ha_djal).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.tmeteo", id(ha_meteo).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.talarm", id(ha_alarm).state.c_str() );
+          id(esp_nextion).set_component_text("tvariable.tpenc", id(ha_calpenc).state.c_str() ); 
+
+
+
+
+####### définition des sensor et récupération des valeurs (integer)
+
+sensor:
+  - platform: homeassistant
+    id: ha_mail
+    entity_id: counter.compteur_bal #compteur de courrier
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text_printf("main.tcourrier","%.0f",id(ha_mail).state);
+
+  - platform: homeassistant
+    id: ha_tempext
+    entity_id: sensor.limeil_brevannes_temperature #température exterieure
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text_printf("main.tempext","%.1f",id(ha_tempext).state);
+
+          
+
+####### définition des sensor et récupération des valeurs (texte)
+
+
+text_sensor:
+
+  - platform: homeassistant
+    id: ha_date
+    entity_id: sensor.date_nextion # récupération de la date
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("main.tdate", id(ha_date).state.c_str() );
+
+  - platform: homeassistant
+    id: ha_time
+    entity_id: sensor.time # récupération de l'heure
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("main.ttime", id(ha_time).state.c_str() );
+
+  - platform: homeassistant
+    id: ha_calpmarron
+    entity_id: calendar.dechets_domestique # récupération de la valeur du calendirer de ramassage des ordures 
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.tpmarron", id(ha_calpmarron).state.c_str() );
+          
+  - platform: homeassistant
+    id: ha_calpvege
+    entity_id: calendar.dechets_vegetaux # récupération de la valeur du calendirer de ramassage des ordures 
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.tpvege", id(ha_calpvege).state.c_str() );
+
+  - platform: homeassistant
+    id: ha_calpjaune
+    entity_id: calendar.dechets_jaunes # récupération de la valeur du calendirer de ramassage des ordures 
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.tpjaune", id(ha_calpjaune).state.c_str() );
+
+  - platform: homeassistant
+    id: ha_calpbleu
+    entity_id: calendar.dechets_verre # récupération de la valeur du calendirer de ramassage des ordures 
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.tpbleu", id(ha_calpbleu).state.c_str() );
+
+  - platform: homeassistant
+    id: ha_djal
+    entity_id: person.djal # récupération de la présence de djal
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.tdjal", id(ha_djal).state.c_str() );
+
+  - platform: homeassistant
+    id: ha_doudou
+    entity_id: person.doudou # récupération de la présence de doudou
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.tdoudou", id(ha_doudou).state.c_str() );
+
+  - platform: homeassistant
+    id: ha_calpenc
+    entity_id: calendar.encombrants # récupération de la valeur du calendirer de ramassage des ordures 
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.tpenc", id(ha_calpenc).state.c_str() );         
+
+  - platform: homeassistant
+    id: ha_meteo
+    entity_id: weather.limeil_brevannes # récupération de la condition météo
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.tmeteo", id(ha_meteo).state.c_str() );
+
+  - platform: homeassistant
+    id: ha_alarm
+    entity_id: alarm_control_panel.alarme_2  #récupération du statut de l'alarme
+    on_value:
+      then:
+        lambda: |-
+          id(esp_nextion).set_component_text("tvariable.talarm", id(ha_alarm).state.c_str() );
+          
+
+####### définition des sensor et récupération des valeurs (binaire)
+ 
+binary_sensor:
+
+ - platform: nextion
+   page_id: 0
+   component_id: 7
+   id: nx_clic_courrier # récuperation du clic pour reset le compteur courrier
+   on_press:
+      then:
+        - homeassistant.service:
+            service: counter.reset
+            data:
+              entity_id: counter.compteur_bal
+
+
+ - platform: homeassistant
+   id: ha_portail
+   entity_id: light.bust4_z_wave_interface # récupération de l'état du portail
+   on_state:
+      then:
+        lambda: |-
+          if (id(ha_portail).state) {
+            id(esp_nextion).set_component_value("btgate",1);
+          } else {
+            id(esp_nextion).set_component_value("btgate",0);
+          }
+
+ - platform: nextion
+   page_id: 0
+   component_id: 13
+   id: nx_portail # récuperation du clic pour ouvrir/fermer le portail
+   on_press:
+      then:
+        if:
+          condition:
+            lambda: 'return id(ha_portail).state;'
+          then:
+            - homeassistant.service:
+                service: light.turn_off
+                data:
+                  entity_id: light.bust4_z_wave_interface
+          else:
+            - homeassistant.service:
+                service: light.turn_on
+                data:
+                  entity_id: light.bust4_z_wave_interface
+
+
+ - platform: nextion
+   page_id: 3
+   component_id: 1
+   id: nx_disarm # récuperation du clic pour désarmer l'alarme
+   on_press:
+      then:
+        - homeassistant.service:
+            service: alarm_control_panel.alarm_disarm
+            data:
+              entity_id: alarm_control_panel.alarme_2
+
+
