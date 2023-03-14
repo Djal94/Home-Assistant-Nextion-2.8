@@ -3,6 +3,21 @@
 
 ![Nextion](https://user-images.githubusercontent.com/35771339/225013109-b3ed8c40-9fef-4b1d-8148-c2848ab0bb86.jpeg)
 
+### Fonctions : 
+
+- Indicateurs (points de couleur) de connectivité WIfi/Home Assistant
+- Date/Heure/Météo
+- Indicateurs de présence des personnes avec bascule de chaque visage en couleur/N&B
+- Notification de courrier avec icône enveloppe qui clignote et indicateur du nombre de passages.
+- Bouton d’ouverture du portail extérieur.
+- Gestion de l’alarme : Quand l’alarme est activée, il bascule sur un écran vérouillé, et sur un pavé numérique au touché qui permet de désarmer l’alarme avec un code.
+- La ligne du bas, c’est 4 icônes de notification du ramassage des poubelles, qui prennent la couleur de la poubelle le jour du ramassage.
+- Ecran éteint lorsque la maison est en mode absent
+- Luminosité réduite en fonction de l'heure de la journée/nuit
+- Ecran allumé lors du passage en mode présent / Ouverture porte d’entrée
+
+L’idée de cet écran est de le placer juste a coté de la porte d’entrée (intérieur).
+
 
 ### Matériel nécéssaire : 
 
