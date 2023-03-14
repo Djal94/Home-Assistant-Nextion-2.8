@@ -63,7 +63,7 @@ L’idée de cet écran est de le placer juste a coté de la porte d’entrée (
   
   Je vous laisse avec la [documentation de ESPHOME](https://esphome.io/), et celle plus spécifique du [Composant Nextion](https://esphome.io/components/display/nextion.html)
   
-  Encore une fois, récupérez mon fichier nextion.yaml et adaptez selon vos besoins.
+  Encore une fois, récupérez mon fichier esp-nextion.yaml et adaptez selon vos besoins.
   
   #### Annexes : 
   
