@@ -33,7 +33,7 @@ L’idée de cet écran est de le placer juste a coté de la porte d’entrée (
 
 - Le module complémentaire [ESPHOME](https://esphome.io/guides/getting_started_hassio.html) pour Home Asisstant, pour programmer votre ESP facilement depuis HA
 
-
+- Le boitier externe est une impression 3D, voici le fichier .stl, il n'est pas de moi, [vous le trouverez ici](https://cults3d.com/fr/mod%C3%A8le-3d/divers/case-for-nextion-2-8-inches)
 ### Connexion ESP/Ecran :
 
  Rien de compliqué ici :
@@ -68,3 +68,5 @@ L’idée de cet écran est de le placer juste a coté de la porte d’entrée (
   #### Annexes : 
   
   - Excellent [sujet sur le forum HA de Argonaute](https://forum.hacf.fr/t/ecran-tactile-nextion-avec-esphome-deporter-vos-commandes/10622) duquel je me suis inspiré
+  
+  #### Je tiens a remercier Argonaute du Forum HA sans qui je n'aurai pas eu l'inspiration, [vous trouverez son github ici](https://github.com/argonaute199/Nextion28-home-assistant)
