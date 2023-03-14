@@ -50,9 +50,9 @@ L’idée de cet écran est de le placer juste a coté de la porte d’entrée (
 
 
   Pour programmer l'interface du Nextion, il faut récuperer [l'éditeur Nextion](https://nextion.tech/nextion-editor/)
-  Vous pouvez charger mon fichier nextion.tft, et adaptez en fonction de vos besoins. N'hésitez pas à consulter [la documentation](https://nextion.tech/editor_guide/)
+  Vous pouvez charger mon fichier nextion.HMI, et adaptez en fonction de vos besoins. N'hésitez pas à consulter [la documentation](https://nextion.tech/editor_guide/)
   
-  Pour charger le fichier sur votre Nextion, cliquer sur File/TFT File Output, copier/coller le fichier .tft sur une carte micro SD à la racine, et alimentez votre       ecran. Une fois l'Update Successfull, éteignez l'ecran, sortez la micro SD et rebranchez -le, et voilà! votre écran est configuré!
+  Pour charger le fichier sur votre Nextion, cliquer sur File/TFT File Output, copier/coller le fichier nextion.tft sur une carte micro SD à la racine, et alimentez votre       ecran. Une fois l'Update Successfull, éteignez l'ecran, sortez la micro SD et rebranchez -le, et voilà! votre écran est configuré!
   
   (Il existe aussi une méthode pour uploader le fichier en OTA (sans fil), mais cette méthode m'ayant posée pas mal de soucis et étant très inconsistante, je vais la passer)
   
