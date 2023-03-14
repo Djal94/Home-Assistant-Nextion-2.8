@@ -3,6 +3,7 @@
 
 ![Nextion](https://user-images.githubusercontent.com/35771339/225013109-b3ed8c40-9fef-4b1d-8148-c2848ab0bb86.jpeg)
 
+
 ### Fonctions : 
 
 - *Indicateurs (points de couleur) de connectivité WIfi/Home Assistant*
@@ -43,6 +44,9 @@ L’idée de cet écran est de le placer juste a coté de la porte d’entrée (
  
  
  ### Interface du Nextion : 
+ 
+ ![image](https://user-images.githubusercontent.com/35771339/225095754-c85a02aa-c55a-4bff-8a01-97f23bece094.png)![image](https://user-images.githubusercontent.com/35771339/225095383-daa44c48-be16-4f7a-8566-af4a89afb829.png)![image](https://user-images.githubusercontent.com/35771339/225095476-81ce4af2-d161-485c-97b5-003d50e8fdfd.png)
+
 
   Pour programmer l'interface du Nextrion, il faut récuperer l'[Editeur Nextion](https://nextion.tech/nextion-editor/)
   Vous pouvez charger mon fichier nextion.tft, et adaptez en fonction de vos besoins. N'hésitez pas à consulter la [documentation](https://nextion.tech/editor_guide/)
